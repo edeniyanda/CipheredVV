@@ -9,6 +9,9 @@ from functools import partial
 from appmodules import encryptFile
 
 
+
+
+
 def get_resource_path(relative_path):
     """
     Get the absolute path to the resource based on whether the script is running as an executable or as a script.
@@ -53,6 +56,11 @@ class MainWindow(QMainWindow, ui):
         self.tabWidget.setCurrentIndex(index_position)
         
     def openFile(self):
+        # Determine the user's home directory
+        home_dir = os.path.expanduser("~")
+
+        # Set the default directory to the desktop directory
+        self.defaultDir = os.path.join(home_dir, "Desktop")
         file_types = "Text files (*.txt *.docx *.pdf *.rtf *.odt);;" \
                     "Audio files (*.mp3);;" \
                     "Video files (*.mp4);;" \
@@ -61,12 +69,63 @@ class MainWindow(QMainWindow, ui):
                     "Spreadsheet files (*.xlsx);;" \
                     "CSV files (*.csv)"
 
-        file, _ = QFileDialog.getOpenFileName(self,
+        self.file, _ = QFileDialog.getOpenFileName(self,
                                                 "Select a file to encrypt",
-                                                "/home",
+                                                self.defaultDir,
                                                 file_types)
+        self.encryptFile(self.file)
     
+    def encryptFile(self, filename):
+        goEncrypt = encryptFile(filename)
+        secretKey= goEncrypt.generate_key()
+        encryptedData = goEncrypt.encrypt_file(secretKey)
+        self.saveEncrypted(encryptedData)
+        self.save_key(secretKey)
+
+        ...
+
+
+    def saveEncrypted(self, dataToSave):
+        save_folder_path = QFileDialog.getExistingDirectory(self,
+                                                            "Select Folder to Save Encrypted File",
+                                                            self.defaultDir
+                                                            )
+        
+        self.save_encrypted_path = save_folder_path +  self.file
+
+
+        with open(self.save_encrypted_path + ".enc", "wb") as file:
+            file.write(dataToSave)
+
+        # if save_folder_path:  # Check if the user provided a save file path
+            
+    def save_key(self, key, filename="secret.key"):
+        saveKey_folder_path = QFileDialog.getExistingDirectory(self,
+                                                    "Select Folder to Save Encrytion Secret Key",
+                                                    self.defaultDir
+        )
+
+        path_to_save = saveKey_folder_path + filename
+        with open(path_to_save, "wb") as key_file:
+            key_file.write(key)
+
+        QMessageBox.information(self,
+                                "Encrypt Status",
+                                "Secret Key ghas been save sucessfully"
+                                )
+
+
     
+
+
+
+
+
+
+
+
+
+
 
 # Application entry point
 def main():

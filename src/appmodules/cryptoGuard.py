@@ -1,13 +1,20 @@
+import os
 from cryptography.fernet import Fernet
+from PyQt5.QtWidgets import QFileDialog, QMessageBox
+# from mainwindow import MainWindow
 
+
+
+# Determine the user's home directory
+home_dir = os.path.expanduser("~")
+# Set the default directory to the desktop directory
+defaultDir = os.path.join(home_dir, "Desktop")
 
 
 class encryptFile:
-    def __init__(self, file_path:str, path_to_save_encrypted:str) -> None:
+    def __init__(self, file_path:str) -> None:
         self.file_path = file_path
-        self.path_to_save_encrypted = path_to_save_encrypted
-    
-    
+        
     def generate_key(self):
         return Fernet.generate_key()
 
@@ -16,15 +23,20 @@ class encryptFile:
         with open(self.file_path, "rb") as file:
             data = file.read()
             encrypted_data = cipher.encrypt(data)
-        with open(self.file_path + ".enc", "wb") as file:
-            file.write(encrypted_data)
+
+        return encrypted_data
+
+
+
         
-        self.save_key(key)
+
+    
+
+
+
             
             
-    def save_key(self, key, filename="secret.key"):
-        with open(filename, "wb") as key_file:
-            key_file.write(key)
+
             
 
 class decryptFile:
