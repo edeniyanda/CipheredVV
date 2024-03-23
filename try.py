@@ -1,0 +1,1 @@
+from cryptoGuard import encryptFile
