@@ -1,0 +1,12 @@
+<!DOCTYPE RCC>
+<RCC version ="1.0">
+    <qresource>
+        <file>assets/img/icon/music-notes.png</file>
+        <file>assets/img/icon/pdf.png</file>
+        <file>assets/img/icon/txt-file.png</file>
+        <file>assets/img/icon/video.png</file>
+        <file>assets/img/icon/word.png</file>
+        <file>assets/img/icon/search.png</file>
+        <file>assets/img/icon/home-button.png</file>
+    </qresource>
+</RCC>
