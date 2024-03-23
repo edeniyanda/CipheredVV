@@ -52,17 +52,18 @@ class MainWindow(QMainWindow, ui):
         self.tabWidget.setCurrentIndex(index_position)
         
     def openFile(self):
-            supported_types = [("Images", "*.png *.xpm *.jpg"), ("All Files", "*.*")]
-            file_filter = ";;".join(f"{type_name} ({type_filter})" for type_name, type_filter in supported_types)
-            files, _ = QFileDialog.getOpenFileNames(self,
-                                                    "Select a file to encrypt",
-                                                    "/home",
-                                                    file_filter)
-            if files:
-                # Process selected files
-                print("Selected files:", files)
-            else:
-                print("No files selected.")
+        file_types = "Text files (*.txt *.docx *.pdf *.rtf *.odt);;" \
+                    "Audio files (*.mp3);;" \
+                    "Video files (*.mp4);;" \
+                    "Image files (*.jpg *.png *.gif);;" \
+                    "Database files (*.sqlite *.db *.mdb);;" \
+                    "Spreadsheet files (*.xlsx);;" \
+                    "CSV files (*.csv)"
+
+        files, _ = QFileDialog.getOpenFileNames(self,
+                                                "Select a file to encrypt",
+                                                "/home",
+                                                file_types)
 
 # Application entry point
 def main():
