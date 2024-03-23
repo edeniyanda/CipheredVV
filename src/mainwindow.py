@@ -52,10 +52,17 @@ class MainWindow(QMainWindow, ui):
         self.tabWidget.setCurrentIndex(index_position)
         
     def openFile(self):
-        files = QFileDialog.getOpenFileNames(self,
-                                     "Select one or more files to open",
-                                     "/home",
-                                     "Images (*.png *.xpm *.jpg)")
+            supported_types = [("Images", "*.png *.xpm *.jpg"), ("All Files", "*.*")]
+            file_filter = ";;".join(f"{type_name} ({type_filter})" for type_name, type_filter in supported_types)
+            files, _ = QFileDialog.getOpenFileNames(self,
+                                                    "Select a file to encrypt",
+                                                    "/home",
+                                                    file_filter)
+            if files:
+                # Process selected files
+                print("Selected files:", files)
+            else:
+                print("No files selected.")
 
 # Application entry point
 def main():
