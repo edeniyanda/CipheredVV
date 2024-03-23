@@ -1,3 +1,3 @@
-from cryptoGuard import encryptFile
+from src.appmodules.cryptoGuard import encryptFile
 
 

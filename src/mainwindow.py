@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessag
 from PyQt5.uic import loadUiType
 import qdarkstyle
 from functools import partial
+from appmodules import encryptFile
 
 
 def get_resource_path(relative_path):
@@ -60,10 +61,12 @@ class MainWindow(QMainWindow, ui):
                     "Spreadsheet files (*.xlsx);;" \
                     "CSV files (*.csv)"
 
-        files, _ = QFileDialog.getOpenFileNames(self,
+        file, _ = QFileDialog.getOpenFileName(self,
                                                 "Select a file to encrypt",
                                                 "/home",
                                                 file_types)
+    
+    
 
 # Application entry point
 def main():
