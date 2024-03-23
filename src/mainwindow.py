@@ -12,6 +12,7 @@ from appmodules import encryptFile
 
 
 
+
 def get_resource_path(relative_path):
     """
     Get the absolute path to the resource based on whether the script is running as an executable or as a script.
@@ -39,7 +40,7 @@ class MainWindow(QMainWindow, ui):
         self.handlePushButtons()
         dark_stylesheet = qdarkstyle.load_stylesheet_pyqt5()
         # self.setStyleSheet(dark_stylesheet)   
-        self.setFixedSize(1052,581)
+        self.setFixedSize(850,554)
         self.tabWidget.tabBar().setVisible(False) # Disable Tab Visibility
         self.tabWidget.setCurrentIndex(0) # Set the current index of the tab WIdget to the first tab
 
@@ -48,7 +49,7 @@ class MainWindow(QMainWindow, ui):
         self.pushButtonDecrypt.clicked.connect(partial(self.changeTabWidgetIndex, 2))
         self.pushButtonHomeE.clicked.connect(partial(self.changeTabWidgetIndex, 0))
         self.pushButtonHomeD.clicked.connect(partial(self.changeTabWidgetIndex, 0))
-        self.toolButtonBrowse.clicked.connect(self.openFile)
+        # self.toolButtonBrowse.clicked.connect(self.openFile)
         
 
     # Change Main Widget 
