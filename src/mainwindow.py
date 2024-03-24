@@ -49,7 +49,7 @@ class MainWindow(QMainWindow, ui):
         self.pushButtonDecrypt.clicked.connect(partial(self.changeTabWidgetIndex, 2))
         self.pushButtonHomeE.clicked.connect(partial(self.changeTabWidgetIndex, 0))
         self.pushButtonHomeD.clicked.connect(partial(self.changeTabWidgetIndex, 0))
-        # self.toolButtonBrowse.clicked.connect(self.openFile)
+        self.uploadButton.clicked.connect(self.openFile)
         
 
     # Change Main Widget 
@@ -69,17 +69,23 @@ class MainWindow(QMainWindow, ui):
                     "Database files (*.sqlite *.db *.mdb);;" \
                     "Spreadsheet files (*.xlsx);;" \
                     "CSV files (*.csv)"
-
-        self.file, _ = QFileDialog.getOpenFileName(self,
-                                                "Select a file to encrypt",
-                                                self.defaultDir,
-                                                file_types)
-        self.encryptFile(self.file)
+        try:
+            self.file, _ = QFileDialog.getOpenFileName(self,
+                                                    "Select a file to encrypt",
+                                                    self.defaultDir,
+                                                    file_types)
+            self.encryptFile(self.file)
+        except FileNotFoundError:
+            pass
     
     def encryptFile(self, filename):
         goEncrypt = encryptFile(filename)
         secretKey= goEncrypt.generate_key()
         encryptedData = goEncrypt.encrypt_file(secretKey)
+        QMessageBox.information(self,
+                                "Encryption Status",
+                                "File Encrypted sucessfully"
+                                )
         self.saveEncrypted(encryptedData)
         self.save_key(secretKey)
 
@@ -91,12 +97,17 @@ class MainWindow(QMainWindow, ui):
                                                             "Select Folder to Save Encrypted File",
                                                             self.defaultDir
                                                             )
-        
-        self.save_encrypted_path = save_folder_path +  self.file
+        dir, selectedfilename = os.path.split(self.file)
 
-
+        self.save_encrypted_path = save_folder_path + "/" + selectedfilename
+    
         with open(self.save_encrypted_path + ".enc", "wb") as file:
             file.write(dataToSave)
+
+        QMessageBox.information(self,
+                                "Encryption Status",
+                                "Encrypted file saved sucessfully"
+                                )
 
         # if save_folder_path:  # Check if the user provided a save file path
             
@@ -106,13 +117,13 @@ class MainWindow(QMainWindow, ui):
                                                     self.defaultDir
         )
 
-        path_to_save = saveKey_folder_path + filename
+        path_to_save = saveKey_folder_path + "/" + filename
         with open(path_to_save, "wb") as key_file:
             key_file.write(key)
 
         QMessageBox.information(self,
-                                "Encrypt Status",
-                                "Secret Key ghas been save sucessfully"
+                                "Encryption Status",
+                                "Secret Key has been save sucessfully"
                                 )
 
 
