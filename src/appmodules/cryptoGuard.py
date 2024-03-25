@@ -26,17 +26,6 @@ class encryptFile:
 
         return encrypted_data
 
-
-
-        
-
-    
-
-
-
-            
-            
-
             
 
 class decryptFile:

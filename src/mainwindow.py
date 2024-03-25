@@ -2,14 +2,11 @@ import os
 import sys
 # from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox, QLabel, QPushButton, QSpinBox, QTableWidget, QDialog, QFileDialog
-# from PyQt5.QtGui import QFont, QPixmap
+from PyQt5.QtGui import QFont, QPixmap
 from PyQt5.uic import loadUiType
 import qdarkstyle
 from functools import partial
-from appmodules import encryptFile
-
-
-
+from appmodules import encryptFile, tellIcon
 
 
 
@@ -39,7 +36,7 @@ class MainWindow(QMainWindow, ui):
         self.setWindowTitle(APP_NAME)
         self.handlePushButtons()
         dark_stylesheet = qdarkstyle.load_stylesheet_pyqt5()
-        # self.setStyleSheet(dark_stylesheet)   
+        self.setStyleSheet(dark_stylesheet)   
         self.setFixedSize(850,554)
         self.tabWidget.tabBar().setVisible(False) # Disable Tab Visibility
         self.tabWidget.setCurrentIndex(0) # Set the current index of the tab WIdget to the first tab
@@ -73,69 +70,92 @@ class MainWindow(QMainWindow, ui):
             self.file, _ = QFileDialog.getOpenFileName(self,
                                                     "Select a file to encrypt",
                                                     self.defaultDir,
-                                                    file_types)
-            self.encryptFile(self.file)
+            
+                                                   file_types)
+            if self.file:
+                dir, filname = os.path.split(self.file)
+                filename, extension = os.path.splitext(filname)
+                iconToShow = tellIcon(extension)  
+                icon_filename = iconToShow.tell() 
+                pixmap_path = get_resource_path(f"../assets/img/icon/{icon_filename}")
+                if os.path.exists(pixmap_path):
+                    pixmap = QPixmap(pixmap_path)
+                self.lineEditfilename.setReadOnly(False)
+                self.iconLabel.setPixmap(pixmap)
+                self.lineEditfilename.setText(filname)
+                self.lineEditfilename.setReadOnly(True)
+                self.encryptFile(self.file)
         except FileNotFoundError:
             pass
     
     def encryptFile(self, filename):
         goEncrypt = encryptFile(filename)
-        secretKey= goEncrypt.generate_key()
-        encryptedData = goEncrypt.encrypt_file(secretKey)
+        self.secretKey= goEncrypt.generate_key()
+        self.encryptedData = goEncrypt.encrypt_file(self.secretKey)
         QMessageBox.information(self,
                                 "Encryption Status",
                                 "File Encrypted sucessfully"
                                 )
-        self.saveEncrypted(encryptedData)
-        self.save_key(secretKey)
+        self.saveEncrypted(self.encryptedData)
+        self.save_key(self.secretKey)
 
         ...
 
 
     def saveEncrypted(self, dataToSave):
+
         save_folder_path = QFileDialog.getExistingDirectory(self,
                                                             "Select Folder to Save Encrypted File",
                                                             self.defaultDir
-                                                            )
-        dir, selectedfilename = os.path.split(self.file)
+                                                           )
+        if len(save_folder_path) == 0:
+            save_folder_path = "/Desktop"
+        if save_folder_path:
+            dir, selectedfilename = os.path.split(self.file)
 
-        self.save_encrypted_path = save_folder_path + "/" + selectedfilename
-    
-        with open(self.save_encrypted_path + ".enc", "wb") as file:
-            file.write(dataToSave)
+            self.save_encrypted_path = save_folder_path + "/" + selectedfilename
+        
+            try:
+                with open(self.save_encrypted_path + ".enc", "wb") as file:
+                    file.write(dataToSave)
+                QMessageBox.information(self,
+                                        "Encryption Status",
+                                        "Encrypted file saved sucessfully"
+                                        )
+            except Exception as e:
+                QMessageBox.information(self,
+                                        "Encryption Status",
+                                        f"Error Message: {e}"
+                                        )
+                
+        else:
+            QMessageBox.information(self,
+                                        "Encryption Status",
+                                        "Invalid Path"
+                                        )
+            self.saveEncrypted(self.encryptedData)
 
-        QMessageBox.information(self,
-                                "Encryption Status",
-                                "Encrypted file saved sucessfully"
-                                )
-
-        # if save_folder_path:  # Check if the user provided a save file path
             
     def save_key(self, key, filename="secret.key"):
         saveKey_folder_path = QFileDialog.getExistingDirectory(self,
                                                     "Select Folder to Save Encrytion Secret Key",
                                                     self.defaultDir
         )
+        if saveKey_folder_path:
+            path_to_save = saveKey_folder_path + "/" + filename
+            with open(path_to_save, "wb") as key_file:
+                key_file.write(key)
 
-        path_to_save = saveKey_folder_path + "/" + filename
-        with open(path_to_save, "wb") as key_file:
-            key_file.write(key)
-
-        QMessageBox.information(self,
-                                "Encryption Status",
-                                "Secret Key has been save sucessfully"
-                                )
-
-
-    
-
-
-
-
-
-
-
-
+            QMessageBox.information(self,
+                                    "Encryption Status",
+                                    "Secret Key has been save sucessfully"
+                                    )
+        else:
+            QMessageBox.information(self,
+                                        "Encryption Status",
+                                        "Invalid Path, Pleaee select a folder"
+                                        )
+            self.save_key(self.secretKey)
 
 
 

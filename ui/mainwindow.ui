@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../assets/img/icon/shield.png</normaloff>../assets/img/icon/shield.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
@@ -24,7 +28,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -47,7 +51,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(44, 132, 0);</string>
+       <string notr="true">color: rgb(87, 90, 255);</string>
       </property>
       <property name="text">
        <string>CipheredVV</string>
@@ -158,7 +162,7 @@ background-color: transparent;</string>
         <x>400</x>
         <y>42</y>
         <width>371</width>
-        <height>411</height>
+        <height>441</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -177,7 +181,7 @@ background-color: #f0f0f0;
        <property name="geometry">
         <rect>
          <x>100</x>
-         <y>300</y>
+         <y>340</y>
          <width>161</width>
          <height>61</height>
         </rect>
@@ -189,6 +193,9 @@ background-color: #f0f0f0;
          <weight>75</weight>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="acceptDrops">
+        <bool>true</bool>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
@@ -210,8 +217,8 @@ QPushButton:hover{
       <widget class="QLabel" name="label">
        <property name="geometry">
         <rect>
-         <x>140</x>
-         <y>370</y>
+         <x>120</x>
+         <y>400</y>
          <width>131</width>
          <height>31</height>
         </rect>
@@ -228,7 +235,7 @@ QPushButton:hover{
         <string>or drop a file</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="iconLabel">
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -241,9 +248,25 @@ QPushButton:hover{
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../icon.qrc">:/assets/img/icon/pdf.png</pixmap>
+        <pixmap>../assets/img/icon/file.png</pixmap>
        </property>
        <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEditfilename">
+       <property name="geometry">
+        <rect>
+         <x>62</x>
+         <y>280</y>
+         <width>261</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: white;</string>
+       </property>
+       <property name="dragEnabled">
         <bool>false</bool>
        </property>
       </widget>
