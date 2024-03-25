@@ -36,7 +36,7 @@ class MainWindow(QMainWindow, ui):
         self.setWindowTitle(APP_NAME)
         self.handlePushButtons()
         dark_stylesheet = qdarkstyle.load_stylesheet_pyqt5()
-        self.setStyleSheet(dark_stylesheet)   
+        # self.setStyleSheet(dark_stylesheet)   
         self.setFixedSize(850,554)
         self.tabWidget.tabBar().setVisible(False) # Disable Tab Visibility
         self.tabWidget.setCurrentIndex(0) # Set the current index of the tab WIdget to the first tab
