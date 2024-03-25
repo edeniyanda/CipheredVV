@@ -2,14 +2,11 @@ import os
 import sys
 # from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox, QLabel, QPushButton, QSpinBox, QTableWidget, QDialog, QFileDialog
-# from PyQt5.QtGui import QFont, QPixmap
+from PyQt5.QtGui import QFont, QPixmap
 from PyQt5.uic import loadUiType
 import qdarkstyle
 from functools import partial
-from appmodules import encryptFile
-
-
-
+from appmodules import encryptFile, tellIcon
 
 
 
@@ -75,11 +72,18 @@ class MainWindow(QMainWindow, ui):
                                                     self.defaultDir,
             
                                                    file_types)
-            
             if self.file:
                 dir, filname = os.path.split(self.file)
-                filname, extention = os.path.splitext(filname)   
+                filename, extension = os.path.splitext(filname)
+                iconToShow = tellIcon(extension)  
+                icon_filename = iconToShow.tell() 
+                pixmap_path = get_resource_path(f"../assets/img/icon/{icon_filename}")
+                if os.path.exists(pixmap_path):
+                    pixmap = QPixmap(pixmap_path)
+                self.lineEditfilename.setReadOnly(False)
+                self.iconLabel.setPixmap(pixmap)
                 self.lineEditfilename.setText(filname)
+                self.lineEditfilename.setReadOnly(True)
                 self.encryptFile(self.file)
         except FileNotFoundError:
             pass

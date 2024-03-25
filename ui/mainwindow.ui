@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -47,7 +47,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(44, 132, 0);</string>
+       <string notr="true">color: rgb(87, 90, 255);</string>
       </property>
       <property name="text">
        <string>CipheredVV</string>
@@ -207,12 +207,12 @@ QPushButton:hover{
         <string>or drop a file</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="iconLabel">
        <property name="geometry">
         <rect>
          <x>40</x>
          <y>0</y>
-         <width>241</width>
+         <width>281</width>
          <height>281</height>
         </rect>
        </property>
@@ -220,7 +220,7 @@ QPushButton:hover{
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../icon.qrc">:/assets/img/icon/pdf.png</pixmap>
+        <pixmap>../assets/img/icon/file.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>false</bool>
@@ -230,9 +230,9 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>62</x>
-         <y>291</y>
+         <y>280</y>
          <width>261</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
