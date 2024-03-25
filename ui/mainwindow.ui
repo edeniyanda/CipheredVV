@@ -134,7 +134,7 @@ background-color: transparent;</string>
         <x>400</x>
         <y>42</y>
         <width>371</width>
-        <height>411</height>
+        <height>441</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -153,7 +153,7 @@ background-color: #f0f0f0;
        <property name="geometry">
         <rect>
          <x>100</x>
-         <y>300</y>
+         <y>340</y>
          <width>161</width>
          <height>61</height>
         </rect>
@@ -165,6 +165,9 @@ background-color: #f0f0f0;
          <weight>75</weight>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="acceptDrops">
+        <bool>true</bool>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
@@ -187,7 +190,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>120</x>
-         <y>370</y>
+         <y>400</y>
          <width>131</width>
          <height>31</height>
         </rect>
@@ -220,6 +223,22 @@ QPushButton:hover{
         <pixmap resource="../icon.qrc">:/assets/img/icon/pdf.png</pixmap>
        </property>
        <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEditfilename">
+       <property name="geometry">
+        <rect>
+         <x>62</x>
+         <y>291</y>
+         <width>261</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: white;</string>
+       </property>
+       <property name="dragEnabled">
         <bool>false</bool>
        </property>
       </widget>
