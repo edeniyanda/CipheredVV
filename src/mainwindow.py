@@ -1,7 +1,8 @@
 import os
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox, QLabel, QPushButton, QSpinBox, QTableWidget, QDialog, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox, QLabel, QPushButton, QSpinBox, QTableWidget, QDialog, QFileDialog, QGraphicsDropShadowEffect
 from PyQt5.QtGui import QFont, QPixmap
+from PyQt5.QtGui import QColor
 from PyQt5.uic import loadUiType
 import qdarkstyle
 from functools import partial
@@ -36,11 +37,14 @@ class MainWindow(QMainWindow, ui):
         self.setWindowTitle(APP_NAME)
         self.handlePushButtons()
         dark_stylesheet = qdarkstyle.load_stylesheet_pyqt5()
-        # self.setStyleSheet(dark_stylesheet)
+        self.setStyleSheet(dark_stylesheet)
         self.setFixedSize(850,554)
         self.tabWidget.tabBar().setVisible(False) # Disable Tab Visibility
         self.tabWidget.setCurrentIndex(0) # Set the current index of the tab WIdget to the first tab
         self.encrtpytab = EncryptWindow()
+        shadow = QGraphicsDropShadowEffect()
+        shadow.setBlurRadius(10)
+        self.pushButtonEncrypt.setGraphicsEffect(shadow)
 
     def handlePushButtons(self):
         self.pushButtonEncrypt.clicked.connect(partial(self.changeTabWidgetIndex, 1))
