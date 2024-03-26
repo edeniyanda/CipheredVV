@@ -26,6 +26,7 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setStyleSheet("QMainWindow {border-radius: 10px;}")
         # self.setAttribute(Qt.WA_TranslucentBackground) 
         self.pushButtonCancel.clicked.connect(self.close)
         self.pushButtonBrowse.clicked.connect(self.openFileDialogue)
