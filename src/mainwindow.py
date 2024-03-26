@@ -7,6 +7,7 @@ from PyQt5.uic import loadUiType
 import qdarkstyle
 from functools import partial
 from appmodules import encryptFile, tellIcon
+from encryptwindow import EncryptWindow
 
 
 
@@ -40,6 +41,7 @@ class MainWindow(QMainWindow, ui):
         self.setFixedSize(850,554)
         self.tabWidget.tabBar().setVisible(False) # Disable Tab Visibility
         self.tabWidget.setCurrentIndex(0) # Set the current index of the tab WIdget to the first tab
+        self.encrtpytab = EncryptWindow()
 
     def handlePushButtons(self):
         self.pushButtonEncrypt.clicked.connect(partial(self.changeTabWidgetIndex, 1))
@@ -54,39 +56,40 @@ class MainWindow(QMainWindow, ui):
         self.tabWidget.setCurrentIndex(index_position)
         
     def openFile(self):
+        self.encrtpytab.displayWindow()
         # Determine the user's home directory
-        home_dir = os.path.expanduser("~")
+        # home_dir = os.path.expanduser("~")
 
-        # Set the default directory to the desktop directory
-        self.defaultDir = os.path.join(home_dir, "Desktop")
-        file_types = "Text files (*.txt *.docx *.pdf *.rtf *.odt);;" \
-                    "Audio files (*.mp3);;" \
-                    "Video files (*.mp4);;" \
-                    "Image files (*.jpg *.png *.gif);;" \
-                    "Database files (*.sqlite *.db *.mdb);;" \
-                    "Spreadsheet files (*.xlsx);;" \
-                    "CSV files (*.csv)"
-        try:
-            self.file, _ = QFileDialog.getOpenFileName(self,
-                                                    "Select a file to encrypt",
-                                                    self.defaultDir,
+        # # Set the default directoxry to the desktop directory
+        # self.defaultDir = os.path.join(home_dir, "Desktop")
+        # file_types = "Text files (*.txt *.docx *.pdf *.rtf *.odt);;" \
+        #             "Audio files (*.mp3);;" \
+        #             "Video files (*.mp4);;" \
+        #             "Image files (*.jpg *.png *.gif);;" \
+        #             "Database files (*.sqlite *.db *.mdb);;" \
+        #             "Spreadsheet files (*.xlsx);;" \
+        #             "CSV files (*.csv)"
+        # try:
+        #     self.file, _ = QFileDialog.getOpenFileName(self,
+        #                                             "Select a file to encrypt",
+        #                                             self.defaultDir,
             
-                                                   file_types)
-            if self.file:
-                dir, filname = os.path.split(self.file)
-                filename, extension = os.path.splitext(filname)
-                iconToShow = tellIcon(extension)  
-                icon_filename = iconToShow.tell() 
-                pixmap_path = get_resource_path(f"../assets/img/icon/{icon_filename}")
-                if os.path.exists(pixmap_path):
-                    pixmap = QPixmap(pixmap_path)
-                self.lineEditfilename.setReadOnly(False)
-                self.iconLabel.setPixmap(pixmap)
-                self.lineEditfilename.setText(filname)
-                self.lineEditfilename.setReadOnly(True)
-                self.encryptFile(self.file)
-        except FileNotFoundError:
-            pass
+        #                                            file_types)
+        #     if self.file:
+        #         dir, filname = os.path.split(self.file)
+        #         filename, extension = os.path.splitext(filname)
+        #         iconToShow = tellIcon(extension)  
+        #         icon_filename = iconToShow.tell() 
+        #         pixmap_path = get_resource_path(f"../assets/img/icon/{icon_filename}")
+        #         if os.path.exists(pixmap_path):
+        #             pixmap = QPixmap(pixmap_path)
+        #             self.iconLabel.setPixmap(pixmap)
+        #         self.lineEditfilename.setReadOnly(False)
+        #         self.lineEditfilename.setText(filname)
+        #         self.lineEditfilename.setReadOnly(True)
+        #         self.encryptFile(self.file)
+        # except FileNotFoundError:
+        #     pass
     
     def encryptFile(self, filename):
         goEncrypt = encryptFile(filename)
