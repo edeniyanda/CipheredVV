@@ -17,8 +17,11 @@
    <iconset>
     <normaloff>../assets/img/icon/shield.png</normaloff>../assets/img/icon/shield.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background: rgb(220, 220, 220);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QTabWidget" name="pallet">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -28,8 +31,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-</string>
+     <string notr="true">background: rgb(220, 220, 220)</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -83,13 +85,16 @@
       <property name="styleSheet">
        <string notr="true">QPushButton{
 	border-radius:20px;
-	border: 2px solid blue;
+	border: none;
 	background-color: white;
 	color:rgb(0, 255, 0);
+	
+
 }
 QPushButton:hover{
-	border: none;
+	border: 2px solid rgb(75, 150, 230);
 	background-color:rgb(238, 245, 255);
+	cursor: pointer;
 }</string>
       </property>
       <property name="text">
@@ -115,12 +120,12 @@ QPushButton:hover{
       <property name="styleSheet">
        <string notr="true">QPushButton{
 	border-radius:20px;
-	border: 2px solid blue;
+	border: none ;
 	background-color: white;
 	color: red;
 }
 QPushButton:hover{
-	border: none;
+	border: 2px solid rgb(75, 150, 230);
 	background-color:rgb(238, 245, 255);
 }</string>
       </property>
