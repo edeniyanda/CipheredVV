@@ -35,6 +35,8 @@ border-radius: 15px;</string>
      <font>
       <family>Segoe UI</family>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -58,6 +60,8 @@ background-color: white;</string>
      <font>
       <family>Segoe UI</family>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -103,12 +107,19 @@ border-radius: 7px;</string>
      <font>
       <family>Segoe UI</family>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:rgb(0, 189, 164);
-color: white;
-border-radius: 7px;</string>
+     <string notr="true">QPushButton{
+	background-color:rgb(0, 189, 164);
+	color: white;
+	border-radius: 7px;
+}
+QPushButton:hover{
+	background-color:rgb(0, 157, 136)
+}</string>
     </property>
     <property name="text">
      <string>Proceed with Encryption</string>
@@ -127,12 +138,19 @@ border-radius: 7px;</string>
      <font>
       <family>Segoe UI</family>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:rgb(200, 59, 78);
-color: white;
-border-radius: 7px;</string>
+     <string notr="true">QPushButton{
+	background-color:rgb(200, 59, 78);
+	color: white;
+	border-radius: 7px;
+}
+QPushButton:hover{
+	background-color: rgb(185, 54, 74)
+}</string>
     </property>
     <property name="text">
      <string>Cancel</string>
