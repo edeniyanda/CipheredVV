@@ -25,9 +25,9 @@ border-radius: 15px;</string>
    <widget class="QLineEdit" name="lineEditPath">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>80</y>
-      <width>531</width>
+      <width>521</width>
       <height>41</height>
      </rect>
     </property>
@@ -44,7 +44,7 @@ border-radius: 15px;</string>
 background-color: white;</string>
     </property>
     <property name="placeholderText">
-     <string>File Path</string>
+     <string>  File Path</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonBrowse">
@@ -65,9 +65,14 @@ background-color: white;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:rgb(75, 150, 230);
-color: white;
-border-radius: 7px;</string>
+     <string notr="true">QPushButton{
+	background-color:rgb(75, 150, 230);
+	color: white;
+	border-radius: 7px;
+}
+QPushButton:hover{
+	background-color: rgb(60, 122, 184)
+}</string>
     </property>
     <property name="text">
      <string>Browse...</string>
@@ -76,9 +81,9 @@ border-radius: 7px;</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>20</y>
-      <width>101</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
