@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Encryption Tab</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../assets/img/icon/shield.png</normaloff>../assets/img/icon/shield.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="lineEditPath">
     <property name="geometry">

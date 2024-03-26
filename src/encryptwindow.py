@@ -1,7 +1,7 @@
 import os
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox, QLabel, QPushButton, QSpinBox, QTableWidget, QDialog, QFileDialog
-
+from PyQt5.QtCore import Qt
 from PyQt5.uic import loadUiType
 
 def get_resource_path(relative_path):
@@ -25,6 +25,8 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
+        self.setWindowFlag(Qt.FramelessWindowHint)
+        # self.setAttribute(Qt.WA_TranslucentBackground) 
         self.pushButtonCancel.clicked.connect(self.close)
         self.pushButtonBrowse.clicked.connect(self.openFileDialogue)
         self.pushButtonProceed.clicked.connect(self.proceed)
@@ -58,7 +60,7 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
             else:
                 QMessageBox.critical(self,
                                      "Error",
-                                     f"'{self.filePath}' is not a valid Psth",
+                                     f"'{self.filePath}' is not a valid Path",
                                      )
 
     
