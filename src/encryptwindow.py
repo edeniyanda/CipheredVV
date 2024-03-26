@@ -30,6 +30,7 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
         self.pushButtonCancel.clicked.connect(self.close)
         self.pushButtonBrowse.clicked.connect(self.openFileDialogue)
         self.pushButtonProceed.clicked.connect(self.proceed)
+        self.pushButtonCancel2.clicked.connect(self.close)
 
     def openFileDialogue(self):
         home_dir = os.path.expanduser("~")
