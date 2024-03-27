@@ -8,6 +8,7 @@ import qdarkstyle
 from functools import partial
 from appmodules import encryptFile, tellIcon
 from encryptwindow import EncryptWindow
+from progressBar import progressBarui
 
 
 
@@ -42,6 +43,7 @@ class MainWindow(QMainWindow, ui):
         self.tabWidget.tabBar().setVisible(False) # Disable Tab Visibility
         self.tabWidget.setCurrentIndex(0) # Set the current index of the tab WIdget to the first tab
         self.encrtpytab = EncryptWindow()
+        self.progressBar = progressBarui()
         shadow = QGraphicsDropShadowEffect()
         shadow.setBlurRadius(10)
         self.pushButtonEncrypt.setGraphicsEffect(shadow)
@@ -60,24 +62,9 @@ class MainWindow(QMainWindow, ui):
         
     def openFile(self):
         self.encrtpytab.displayWindow()
-        # Determine the user's home directory
-        # home_dir = os.path.expanduser("~")
-
-        # # Set the default directoxry to the desktop directory
-        # self.defaultDir = os.path.join(home_dir, "Desktop")
-        # file_types = "Text files (*.txt *.docx *.pdf *.rtf *.odt);;" \
-        #             "Audio files (*.mp3);;" \
-        #             "Video files (*.mp4);;" \
-        #             "Image files (*.jpg *.png *.gif);;" \
-        #             "Database files (*.sqlite *.db *.mdb);;" \
-        #             "Spreadsheet files (*.xlsx);;" \
-        #             "CSV files (*.csv)"
-        # try:
-        #     self.file, _ = QFileDialog.getOpenFileName(self,
-        #                                             "Select a file to encrypt",
-        #                                             self.defaultDir,
-            
-        #                                            file_types)
+        with open(get_resource_path("filepath.txt"), "r") as fhand:
+            self.file = fhand.read()
+        print(self.file)
         #     if self.file:
         #         dir, filname = os.path.split(self.file)
         #         filename, extension = os.path.splitext(filname)

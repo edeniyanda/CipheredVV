@@ -3,6 +3,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox, QLabel, QPushButton, QSpinBox, QTableWidget, QDialog, QFileDialog
 from PyQt5.QtCore import Qt
 from PyQt5.uic import loadUiType
+from progressBar import progressBarWindow
 
 def get_resource_path(relative_path):
     """
@@ -26,8 +27,9 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
-        self.setStyleSheet("QMainWindow {border-radius: 10px;}")
-        # self.setAttribute(Qt.WA_TranslucentBackground) 
+        # self.setStyleSheet("QMainWindow {border-radius: 10px;}")
+        self.progressBar = progressBarWindow()
+        self.setAttribute(Qt.WA_TranslucentBackground) 
         self.pushButtonCancel.clicked.connect(self.close)
         self.pushButtonBrowse.clicked.connect(self.openFileDialogue)
         self.pushButtonProceed.clicked.connect(self.proceed)
@@ -58,16 +60,26 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
         self.filePath = self.lineEditPath.text()
         if self.filePath:
             if os.path.exists(self.filePath):
+                with open(get_resource_path("filepath.txt"), "w") as fhand:
+                    fhand.write(str(self.filePath))
+                self.close()
+                
                 ...
             else:
                 QMessageBox.critical(self,
                                      "Error",
                                      f"'{self.filePath}' is not a valid Path",
                                      )
+        else:
+            QMessageBox.critical(self,
+                                "Error",
+                                f"File path cannot be Empty",
+                                )
 
-    
     def displayWindow(self):
         self.show()
+
+        
 
 
 if __name__ == "__main__":
