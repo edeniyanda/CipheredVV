@@ -29,12 +29,17 @@ class progressBarWindow(QMainWindow, progressBarui):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
+        self.progressBar.setValue(0)
         self.infoShow = {
             30 : "...getting ciphers",
             60 : "...building chiphers",
             80 : "...getting ready",
             100 : "Completed"
         }
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.progress)
+        
+        self.timer.start(35)
 
 
 
@@ -54,10 +59,7 @@ class progressBarWindow(QMainWindow, progressBarui):
         ...
     def displayWindow(self):
         # ProgresBar timer 
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.progress)
-        
-        self.timer.start(35)
+
         self.show()
 
 

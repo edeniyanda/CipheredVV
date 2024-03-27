@@ -63,6 +63,7 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
                 with open(get_resource_path("filepath.txt"), "w") as fhand:
                     fhand.write(str(self.filePath))
                 
+                self.lineEditPath.setText("")
                 self.close()
                 self.progressBar.displayWindow()
                 
