@@ -42,7 +42,6 @@ class MainWindow(QMainWindow, ui):
         self.setFixedSize(850,554)
         self.tabWidget.tabBar().setVisible(False) # Disable Tab Visibility
         self.tabWidget.setCurrentIndex(0) # Set the current index of the tab WIdget to the first tab
-        self.encrtpytab = EncryptWindow()
         # self.progressBar = progressBarui()
         shadow = QGraphicsDropShadowEffect()
         shadow.setBlurRadius(10)
@@ -61,13 +60,14 @@ class MainWindow(QMainWindow, ui):
         self.tabWidget.setCurrentIndex(index_position)
         
     def openFile(self):
-        self.encrtpytab.displayWindow()
+        self.encryptab = EncryptWindow()
+        self.encryptab.displayWindow()
 
 
         with open(get_resource_path("filepath.txt"), "r") as fhand:
             self.file = fhand.read()
-        
-        
+
+            ...
         #     if self.file:
         #         dir, filname = os.path.split(self.file)
         #         filename, extension = os.path.splitext(filname)
@@ -153,12 +153,15 @@ class MainWindow(QMainWindow, ui):
                                         )
             self.save_key(self.secretKey)
     def closeEvent(self, event):
-        if self.encrtpytab and self.encrtpytab.isVisible():
+        if self.encryptab and self.encryptab.isVisible():
             event.ignore()
             QMessageBox.critical(self,
                                  "Error",
                                  "Closed the Browse Window first")
-            self.encrtpytab.setVisible(True)  # Ignore the close event
+            self.encryptab.initial_geometry = self.encryptab.geometry()
+            self.encryptab.setGeometry(self.encryptab.initial_geometry)
+            # self.encryptab.showNormal()
+            self.encryptab.setVisible(True)  # Ignore the close event
         else:
             reply = QMessageBox.question(
                                     self,

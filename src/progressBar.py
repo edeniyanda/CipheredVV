@@ -36,7 +36,9 @@ class progressBarWindow(QMainWindow, progressBarui):
             100 : "Completed"
         }
 
-
+    def resetCounter(self):
+        global counter
+        counter = 0
 
     def progress(self):
         global counter
@@ -51,15 +53,14 @@ class progressBarWindow(QMainWindow, progressBarui):
             self.labelMessage.setText(messageToShow)
 
         counter += 1
-        ...
+
     def displayWindow(self):
+        # Reset counter
+        self.resetCounter()
+        
         # ProgresBar timer 
         self.timer = QTimer()
         self.timer.timeout.connect(self.progress)
         
         self.timer.start(35)
         self.show()
-
-
-
-
