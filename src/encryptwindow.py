@@ -60,20 +60,25 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
         self.filePath = self.lineEditPath.text()
         if self.filePath:
             if os.path.exists(self.filePath):
+                with open(get_resource_path("filepath.txt"), "w") as fhand:
+                    fhand.write(str(self.filePath))
                 self.close()
-                return self.filePath
-
-
+                
                 ...
             else:
                 QMessageBox.critical(self,
                                      "Error",
                                      f"'{self.filePath}' is not a valid Path",
                                      )
+        else:
+            QMessageBox.critical(self,
+                                "Error",
+                                f"File path cannot be Empty",
+                                )
 
-    
     def displayWindow(self):
         self.show()
+
         
 
 
