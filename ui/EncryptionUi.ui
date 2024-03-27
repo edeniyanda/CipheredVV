@@ -113,6 +113,37 @@ QPushButton:hover{
 QPushButton:hover{
 	background-color: rgb(60, 122, 184)
 }</string>
+<<<<<<< HEAD
+    </property>
+    <property name="text">
+     <string>Cancel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonCancel2">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nexa</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <kerning>false</kerning>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	border: 1px;
+=======
        </property>
        <property name="text">
         <string>Browse...</string>
@@ -167,12 +198,15 @@ background-color: white;</string>
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	background-color:rgb(200, 59, 78);
+>>>>>>> 9d31aa00e076d030b49dfaf2625e49951a6815c4
 	border-radius: 2px;
-	color: white;
+	background: transparent;
+	color: black;
 }
 QPushButton:hover{
+	border-radius: 2px;
 	background-color:rgb(167, 12, 1);
-	color: white;
+	color: black;
 }</string>
        </property>
        <property name="text">
