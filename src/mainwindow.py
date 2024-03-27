@@ -152,6 +152,26 @@ class MainWindow(QMainWindow, ui):
                                         "Invalid Path, Pleaee select a folder"
                                         )
             self.save_key(self.secretKey)
+    def closeEvent(self, event):
+        if self.encrtpytab and self.encrtpytab.isVisible():
+            event.ignore()
+            QMessageBox.critical(self,
+                                 "Error",
+                                 "Closed the Browse Window first")
+            self.encrtpytab.setVisible(True)  # Ignore the close event
+        else:
+            reply = QMessageBox.question(
+                                    self,
+                                    'Confirm Exit',
+                                    'Are you sure you want to exit?',
+                                    QMessageBox.Yes | QMessageBox.No,
+                                    QMessageBox.No
+                                )
+            if reply == QMessageBox.Yes:
+                event.accept()  # Close the application
+            else:
+                event.ignore()  # Ignore the close event
+
 
 
 
