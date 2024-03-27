@@ -43,7 +43,7 @@ class MainWindow(QMainWindow, ui):
         self.tabWidget.tabBar().setVisible(False) # Disable Tab Visibility
         self.tabWidget.setCurrentIndex(0) # Set the current index of the tab WIdget to the first tab
         self.encrtpytab = EncryptWindow()
-        self.progressBar = progressBarui()
+        # self.progressBar = progressBarui()
         shadow = QGraphicsDropShadowEffect()
         shadow.setBlurRadius(10)
         self.pushButtonEncrypt.setGraphicsEffect(shadow)
@@ -63,7 +63,7 @@ class MainWindow(QMainWindow, ui):
     def openFile(self):
         self.encrtpytab.displayWindow()
 
-        
+
         with open(get_resource_path("filepath.txt"), "r") as fhand:
             self.file = fhand.read()
         

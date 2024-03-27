@@ -28,7 +28,6 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
         self.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
         # self.setStyleSheet("QMainWindow {border-radius: 10px;}")
-        self.progressBar = progressBarWindow()
         self.setAttribute(Qt.WA_TranslucentBackground) 
         self.pushButtonCancel.clicked.connect(self.close)
         self.pushButtonBrowse.clicked.connect(self.openFileDialogue)
@@ -65,6 +64,7 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
                 
                 self.lineEditPath.setText("")
                 self.close()
+                self.progressBar = progressBarWindow()
                 self.progressBar.displayWindow()
                 
                 ...

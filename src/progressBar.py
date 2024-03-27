@@ -7,7 +7,7 @@ from PyQt5.uic import loadUiType
 from appmodules import encryptFile, tellIcon
 # from encryptwindow import EncryptWindow
 
-
+counter = 0
 def get_resource_path(relative_path):
     """
     Get the absolute path to the resource based on whether the script is running as an executable or as a script.
@@ -23,7 +23,6 @@ def get_resource_path(relative_path):
     return resource_path
 
 progressBarui, _ = loadUiType(get_resource_path('../ui/progeressBar.ui'))
-counter = 0
 # Main application window
 class progressBarWindow(QMainWindow, progressBarui):
     def __init__(self):
@@ -36,10 +35,6 @@ class progressBarWindow(QMainWindow, progressBarui):
             80 : "...getting ready",
             100 : "Completed"
         }
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.progress)
-        
-        self.timer.start(35)
 
 
 
@@ -59,7 +54,10 @@ class progressBarWindow(QMainWindow, progressBarui):
         ...
     def displayWindow(self):
         # ProgresBar timer 
-
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.progress)
+        
+        self.timer.start(35)
         self.show()
 
 
