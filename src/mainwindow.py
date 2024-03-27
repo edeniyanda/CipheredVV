@@ -8,6 +8,7 @@ import qdarkstyle
 from functools import partial
 from appmodules import encryptFile, tellIcon
 from encryptwindow import EncryptWindow
+from progressBar import progressBarui
 
 
 
@@ -42,6 +43,7 @@ class MainWindow(QMainWindow, ui):
         self.tabWidget.tabBar().setVisible(False) # Disable Tab Visibility
         self.tabWidget.setCurrentIndex(0) # Set the current index of the tab WIdget to the first tab
         self.encrtpytab = EncryptWindow()
+        self.progressBar = progressBarui()
         shadow = QGraphicsDropShadowEffect()
         shadow.setBlurRadius(10)
         self.pushButtonEncrypt.setGraphicsEffect(shadow)

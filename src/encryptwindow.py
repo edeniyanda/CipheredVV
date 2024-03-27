@@ -3,6 +3,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox, QLabel, QPushButton, QSpinBox, QTableWidget, QDialog, QFileDialog
 from PyQt5.QtCore import Qt
 from PyQt5.uic import loadUiType
+from progressBar import progressBarWindow
 
 def get_resource_path(relative_path):
     """
@@ -27,6 +28,7 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
         self.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
         # self.setStyleSheet("QMainWindow {border-radius: 10px;}")
+        self.progressBar = progressBarWindow()
         self.setAttribute(Qt.WA_TranslucentBackground) 
         self.pushButtonCancel.clicked.connect(self.close)
         self.pushButtonBrowse.clicked.connect(self.openFileDialogue)
@@ -58,6 +60,10 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
         self.filePath = self.lineEditPath.text()
         if self.filePath:
             if os.path.exists(self.filePath):
+                self.close()
+                return self.filePath
+
+
                 ...
             else:
                 QMessageBox.critical(self,
@@ -68,6 +74,7 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
     
     def displayWindow(self):
         self.show()
+        
 
 
 if __name__ == "__main__":
