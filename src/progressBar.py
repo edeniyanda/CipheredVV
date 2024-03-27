@@ -2,7 +2,11 @@ import os
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox, QLabel, QPushButton, QSpinBox, QTableWidget, QDialog, QFileDialog
 from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUiType
+from appmodules import encryptFile, tellIcon
+# from encryptwindow import EncryptWindow
+
 
 def get_resource_path(relative_path):
     """
@@ -41,11 +45,6 @@ class progressBarWindow(QMainWindow, progressBarui):
         
         if counter > 100:
             self.timer.stop()
-            ...
-            
-            # self.mainapp = MainApp()
-            # self.mainapp.show()
-            
             self.close()
         messageToShow = self.infoShow.get(counter)
         if messageToShow:

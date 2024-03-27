@@ -62,9 +62,12 @@ class MainWindow(QMainWindow, ui):
         
     def openFile(self):
         self.encrtpytab.displayWindow()
+
+        
         with open(get_resource_path("filepath.txt"), "r") as fhand:
             self.file = fhand.read()
-        print(self.file)
+        
+        
         #     if self.file:
         #         dir, filname = os.path.split(self.file)
         #         filename, extension = os.path.splitext(filname)

@@ -62,7 +62,9 @@ class EncryptWindow(QMainWindow, EncrypPromptui):
             if os.path.exists(self.filePath):
                 with open(get_resource_path("filepath.txt"), "w") as fhand:
                     fhand.write(str(self.filePath))
+                
                 self.close()
+                self.progressBar.displayWindow()
                 
                 ...
             else:
