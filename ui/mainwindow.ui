@@ -34,7 +34,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -172,10 +172,10 @@ background-color: transparent;</string>
      <widget class="QFrame" name="frame">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>410</x>
         <y>42</y>
-        <width>371</width>
-        <height>441</height>
+        <width>351</width>
+        <height>411</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -194,7 +194,7 @@ background-color: #f0f0f0;
        <property name="geometry">
         <rect>
          <x>100</x>
-         <y>330</y>
+         <y>260</y>
          <width>161</width>
          <height>61</height>
         </rect>
@@ -231,7 +231,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>130</x>
-         <y>400</y>
+         <y>340</y>
          <width>101</width>
          <height>20</height>
         </rect>
@@ -256,10 +256,10 @@ QPushButton:hover{
       <widget class="QLabel" name="iconLabel">
        <property name="geometry">
         <rect>
-         <x>70</x>
-         <y>30</y>
-         <width>251</width>
-         <height>261</height>
+         <x>120</x>
+         <y>40</y>
+         <width>131</width>
+         <height>211</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -273,29 +273,6 @@ height: 50%</string>
         <pixmap>../assets/img/icon/file.png</pixmap>
        </property>
        <property name="scaledContents">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEditfilename">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>300</y>
-         <width>171</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: transparent;
-height: 1px;
-width: 20px;
-
-</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="dragEnabled">
         <bool>false</bool>
        </property>
       </widget>
