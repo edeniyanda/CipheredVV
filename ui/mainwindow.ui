@@ -34,7 +34,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -232,7 +232,7 @@ QPushButton:hover{
         <rect>
          <x>130</x>
          <y>340</y>
-         <width>101</width>
+         <width>121</width>
          <height>20</height>
         </rect>
        </property>
@@ -417,9 +417,9 @@ QPushButton:hover{
       <widget class="QPushButton" name="pushButtonProceed">
        <property name="geometry">
         <rect>
-         <x>450</x>
+         <x>440</x>
          <y>140</y>
-         <width>191</width>
+         <width>201</width>
          <height>41</height>
         </rect>
        </property>
